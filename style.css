@@ -36,6 +36,40 @@ body {
     background: var(--background);
     cursor: none;
     transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated Gradient Background Canvas */
+.gradient-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* Particle Network Canvas */
+.particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Ensure content is above canvases */
+.container,
+.sidebar,
+.theme-toggle {
+    position: relative;
+    z-index: 10;
 }
 
 /* Theme Toggle Button */
@@ -297,11 +331,13 @@ body {
     width: 10px;
     height: 10px;
     background-color: var(--accent-color);
+    box-shadow: 0 0 20px var(--accent-color);
 }
 
 .cursor-outline {
     display: none;
 }
+
 
 /* On desktop, show custom cursor */
 @media (min-width: 768px) {
@@ -358,6 +394,47 @@ h1 {
     animation: slideInLeft 0.8s ease-out;
 }
 
+/* Animated Gradient Text */
+.gradient-text {
+    background: linear-gradient(
+        120deg,
+        #003d99,
+        #0052cc,
+        #0066ff,
+        #0052cc,
+        #003d99
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 6s ease infinite;
+}
+
+[data-theme="dark"] .gradient-text {
+    background: linear-gradient(
+        120deg,
+        #0066ff,
+        #3399ff,
+        #66b3ff,
+        #3399ff,
+        #0066ff
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
 @keyframes slideInLeft {
     from {
         opacity: 0;
@@ -411,10 +488,19 @@ h1 {
 
 /* Skills Section */
 .skills {
-    background: var(--surface);
-    border: 2px solid var(--border);
+    background: rgba(248, 249, 250, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(0, 102, 255, 0.2);
     padding: 40px;
     border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .skills {
+    background: rgba(26, 26, 26, 0.7);
+    border: 2px solid rgba(51, 153, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .skills-grid {
@@ -459,6 +545,11 @@ h1 {
     opacity: 0.7;
 }
 
+.skill-tag {
+    position: relative;
+    overflow: hidden;
+}
+
 .skill-tag:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 5px 15px var(--shadow);
@@ -468,6 +559,25 @@ h1 {
     box-shadow: 0 5px 20px rgba(0, 102, 255, 0.3);
 }
 
+/* Ripple effect for skill tags */
+.skill-tag::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.skill-tag:active::after {
+    width: 200px;
+    height: 200px;
+}
+
 section {
     margin-bottom: 90px;
     position: relative;
@@ -475,13 +585,27 @@ section {
     border-radius: 16px;
     transition: var(--transition);
     border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] section {
+    background: rgba(10, 10, 10, 0.4);
 }
 
 section:hover {
-    background: var(--surface);
-    border-color: var(--border);
+    background: rgba(248, 249, 250, 0.8);
+    border-color: rgba(0, 102, 255, 0.3);
     box-shadow: 0 10px 40px var(--shadow);
     transform: translateY(-3px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+[data-theme="dark"] section:hover {
+    background: rgba(26, 26, 26, 0.8);
+    border-color: rgba(51, 153, 255, 0.4);
 }
 
 h2 {
@@ -567,6 +691,8 @@ h3 {
     position: relative;
     overflow: hidden;
     border: 1px solid transparent;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .work-item::before,
@@ -591,10 +717,18 @@ h3 {
 .work-item:hover,
 .education-item:hover,
 .project-item:hover {
-    transform: translateX(12px);
-    background: var(--surface);
-    border-color: var(--border);
-    box-shadow: 0 5px 20px var(--shadow);
+    background: rgba(248, 249, 250, 0.9);
+    border-color: rgba(0, 102, 255, 0.4);
+    box-shadow: 0 15px 40px rgba(0, 102, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .work-item:hover,
+[data-theme="dark"] .education-item:hover,
+[data-theme="dark"] .project-item:hover {
+    background: rgba(26, 26, 26, 0.9);
+    border-color: rgba(51, 153, 255, 0.5);
 }
 
 .work-item:hover h3,
@@ -626,16 +760,29 @@ h3 {
 }
 
 .connect {
-    background: var(--surface);
+    background: rgba(248, 249, 250, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 50px;
     border-radius: 20px;
     box-shadow: 0 15px 50px var(--shadow);
-    border: 2px solid var(--border);
+    border: 2px solid rgba(0, 102, 255, 0.3);
+}
+
+[data-theme="dark"] .connect {
+    background: rgba(26, 26, 26, 0.8);
+    border: 2px solid rgba(51, 153, 255, 0.4);
 }
 
 .connect:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 60px var(--shadow);
+    box-shadow: 0 20px 60px rgba(0, 102, 255, 0.3);
+    border-color: rgba(0, 102, 255, 0.5);
+}
+
+[data-theme="dark"] .connect:hover {
+    box-shadow: 0 20px 60px rgba(51, 153, 255, 0.3);
+    border-color: rgba(51, 153, 255, 0.6);
 }
 
 .connect p {
