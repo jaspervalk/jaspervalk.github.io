@@ -223,9 +223,9 @@ body {
     .bento-grid {
         grid-template-columns: repeat(12, minmax(0, 1fr));
         grid-template-areas:
-            "hero hero hero hero hero connect connect connect connect education education education"
+            "hero hero hero hero hero connect connect connect connect research research research"
             "projects projects projects projects projects projects projects projects projects projects projects projects"
-            "stack stack stack stack stack experience experience experience experience research research research";
+            "stack stack stack stack stack experience experience experience experience education education education";
     }
 
     .hero-card {
@@ -236,12 +236,8 @@ body {
         grid-area: connect;
     }
 
-    .education-card {
-        grid-area: education;
-    }
-
-    .projects-card {
-        grid-area: projects;
+    .research-card {
+        grid-area: research;
     }
 
     .stack-card {
@@ -252,8 +248,12 @@ body {
         grid-area: experience;
     }
 
-    .research-card {
-        grid-area: research;
+    .education-card {
+        grid-area: education;
+    }
+
+    .projects-card {
+        grid-area: projects;
     }
 }
 
