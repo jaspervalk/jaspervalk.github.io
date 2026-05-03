@@ -138,6 +138,105 @@
             </div>
         </div>
 
+        <!-- Projects (full-width row, scales with internal tile grid) -->
+        <div class="card projects-card" id="projects">
+            <div class="card-header">
+                <h3>Projects</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                    <polyline points="2 17 12 22 22 17" />
+                    <polyline points="2 12 12 17 22 12" />
+                </svg>
+            </div>
+            <div class="projects-grid">
+                <article class="project-tile">
+                    <div class="project-tile-meta">
+                        <span class="status-pill status-pill--live">
+                            <span class="status-pill-dot"></span>
+                            Live
+                        </span>
+                    </div>
+                    <h4>AI Newsletter Agent</h4>
+                    <p>Weekly autonomous agent that curates the AI news worth knowing into a structured email digest.</p>
+                    <div class="concept-tags">
+                        <span class="concept-tag">Agentic AI</span>
+                        <span class="concept-tag">Claude API</span>
+                        <span class="concept-tag">Automation</span>
+                        <span class="concept-tag">GitHub Actions</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/jaspervalk/ai-newsletter" class="arrow-link" target="_blank"
+                            rel="noopener noreferrer">
+                            GitHub
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7" />
+                                <polyline points="7 7 17 7 17 17" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                <article class="project-tile">
+                    <div class="project-tile-meta">
+                        <span class="status-pill status-pill--wip">
+                            <span class="status-pill-dot"></span>
+                            WIP
+                        </span>
+                    </div>
+                    <h4>Healthcare Policy Copilot</h4>
+                    <p>Retrieval-augmented copilot for healthcare policy documents — ingests PDFs and answers questions with grounded citations.</p>
+                    <div class="concept-tags">
+                        <span class="concept-tag">RAG</span>
+                        <span class="concept-tag">Vector Search</span>
+                        <span class="concept-tag">Healthcare AI</span>
+                        <span class="concept-tag">Full-Stack</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/jaspervalk/Healthcare-Policy-Copilot" class="arrow-link" target="_blank"
+                            rel="noopener noreferrer">
+                            GitHub
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7" />
+                                <polyline points="7 7 17 7 17 17" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- Research (paired visually with Education in the right column on desktop) -->
+        <div class="card research-card" id="research">
+            <div class="card-header">
+                <h3>Research</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="9" y1="13" x2="15" y2="13" />
+                    <line x1="9" y1="17" x2="13" y2="17" />
+                </svg>
+            </div>
+            <div class="list-item">
+                <h4>Human-Model Alignment</h4>
+                <div class="list-meta">
+                    <span>BSc Thesis · UvA</span>
+                    <span>2025</span>
+                </div>
+                <p>Systematic analysis of the gLocal transformation for human-model representational alignment.</p>
+                <a href="BSc_Thesis_Jasper_Valk.pdf" class="arrow-link" target="_blank" rel="noopener noreferrer">
+                    Read Paper
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7" />
+                        <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
         <!-- Experience Section -->
         <div class="card experience-card scrollable-card" id="work">
             <div class="card-header">
@@ -313,86 +412,7 @@
             </div>
         </div>
 
-        <!-- Projects / Research -->
-        <div class="card project-card" id="projects">
-            <div class="card-header">
-                <h3>Selected Work</h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
-                    <polyline points="2 17 12 22 22 17" />
-                    <polyline points="2 12 12 17 22 12" />
-                </svg>
-            </div>
-            <div class="card-content project-list">
-                <article class="project-item">
-                    <div class="project-tag-row">
-                        <div class="project-tag">Project</div>
-                        <span class="status-pill status-pill--wip">
-                            <span class="status-pill-dot" aria-hidden="true"></span>
-                            WIP
-                        </span>
-                    </div>
-                    <h4>Trading Signal Research</h4>
-                    <p>Pipeline that ingests YouTube trader content, extracts structured trade calls via a hybrid rules + LLM extractor, backtests them against market data, and scores creator reliability with Wilson confidence intervals. FastAPI backend + Next.js research dashboard.</p>
-                    <a href="https://github.com/jaspervalk/trading-signal-research" class="arrow-link" target="_blank" rel="noopener noreferrer">
-                        View on GitHub
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7" />
-                            <polyline points="7 7 17 7 17 17" />
-                        </svg>
-                    </a>
-                </article>
-                <article class="project-item">
-                    <div class="project-tag-row">
-                        <div class="project-tag">Project</div>
-                        <span class="status-pill status-pill--live">
-                            <span class="status-pill-dot" aria-hidden="true"></span>
-                            LIVE
-                        </span>
-                    </div>
-                    <h4>Healthcare Policy Copilot</h4>
-                    <p>RAG assistant that answers questions over healthcare policy and procedure documents with citations and confidence signals. FastAPI + Next.js, Qdrant vector storage, OpenAI embeddings with a deterministic local fallback.</p>
-                    <a href="https://github.com/jaspervalk/Healthcare-Policy-Copilot" class="arrow-link" target="_blank" rel="noopener noreferrer">
-                        View on GitHub
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7" />
-                            <polyline points="7 7 17 7 17 17" />
-                        </svg>
-                    </a>
-                </article>
-                <article class="project-item">
-                    <div class="project-tag">AI Agent</div>
-                    <h4>AI Newsletter Agent</h4>
-                    <p>Claude agent that scans the web each week, curates the AI news worth knowing, and emails a structured digest. Runs free on GitHub Actions.</p>
-                    <a href="https://github.com/jaspervalk/ai-newsletter" class="arrow-link" target="_blank"
-                        rel="noopener noreferrer">
-                        View on GitHub
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7" />
-                            <polyline points="7 7 17 7 17 17" />
-                        </svg>
-                    </a>
-                </article>
-                <article class="project-item">
-                    <div class="project-tag">Research</div>
-                    <h4>Human-Model Alignment</h4>
-                    <p>Systematic Analysis of the gLocal Transformation. BSc Thesis published at UvA.</p>
-                    <a href="BSc_Thesis_Jasper_Valk.pdf" class="arrow-link" target="_blank" rel="noopener noreferrer">
-                        Read Paper
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7" />
-                            <polyline points="7 7 17 7 17 17" />
-                        </svg>
-                    </a>
-                </article>
-            </div>
-        </div>
-
+        <!-- Education -->
         <div class="card education-card" id="education">
             <div class="card-header">
                 <h3>Education</h3>

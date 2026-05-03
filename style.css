@@ -23,10 +23,6 @@
     --success-soft: rgba(88, 214, 141, 0.08);
     --success-border: rgba(88, 214, 141, 0.18);
     --success-text: #7ee2a9;
-    --warning: #f5b441;
-    --warning-soft: rgba(245, 180, 65, 0.10);
-    --warning-border: rgba(245, 180, 65, 0.22);
-    --warning-text: #f5c66e;
     --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.45);
     --shadow-md: 0 14px 40px rgba(0, 0, 0, 0.28);
     --button-primary-bg: linear-gradient(180deg, #ffffff, #dbe7f7);
@@ -95,10 +91,6 @@ html[data-theme="light"] {
     --success-soft: rgba(31, 155, 94, 0.1);
     --success-border: rgba(31, 155, 94, 0.18);
     --success-text: #1e7a4e;
-    --warning: #c98a14;
-    --warning-soft: rgba(201, 138, 20, 0.10);
-    --warning-border: rgba(201, 138, 20, 0.20);
-    --warning-text: #95680f;
     --shadow-lg: 0 20px 60px rgba(69, 92, 122, 0.16);
     --shadow-md: 0 14px 32px rgba(69, 92, 122, 0.12);
     --button-primary-bg: linear-gradient(180deg, #14345a, #31588a);
@@ -221,38 +213,47 @@ body {
     .bento-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .projects-card {
+        grid-column: 1 / -1;
+    }
 }
 
 @media (min-width: 1080px) {
     .bento-grid {
         grid-template-columns: repeat(12, minmax(0, 1fr));
         grid-template-areas:
-            "hero hero hero hero hero connect connect connect connect project project project"
-            "stack stack stack stack stack experience experience experience experience education education education";
+            "hero hero hero hero hero connect connect connect connect education education education"
+            "projects projects projects projects projects projects projects projects projects projects projects projects"
+            "stack stack stack stack stack experience experience experience experience research research research";
     }
 
     .hero-card {
         grid-area: hero;
     }
 
-    .experience-card {
-        grid-area: experience;
-    }
-
     .social-card {
         grid-area: connect;
+    }
+
+    .education-card {
+        grid-area: education;
+    }
+
+    .projects-card {
+        grid-area: projects;
     }
 
     .stack-card {
         grid-area: stack;
     }
 
-    .project-card {
-        grid-area: project;
+    .experience-card {
+        grid-area: experience;
     }
 
-    .education-card {
-        grid-area: education;
+    .research-card {
+        grid-area: research;
     }
 }
 
@@ -654,14 +655,13 @@ html[data-theme="light"] .moon-icon {
     flex-shrink: 0;
 }
 
-.project-card {
+.projects-card {
     justify-content: flex-start;
     background:
         radial-gradient(circle at top right, var(--project-glow), transparent 35%),
         var(--project-bg);
 }
 
-.project-card .card-content,
 .social-card .card-content,
 .education-card {
     display: flex;
@@ -672,48 +672,104 @@ html[data-theme="light"] .moon-icon {
     gap: 16px;
 }
 
-.project-card .card-content {
-    gap: 0;
+.projects-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
 }
 
-.project-tag-row {
-    display: inline-flex;
+.project-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px;
+    border-radius: 18px;
+    background: var(--tech-surface);
+    border: 1px solid var(--tech-border);
+    transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+}
+
+.project-tile:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+    background: var(--accent-soft-strong);
+}
+
+.project-tile-meta {
+    display: flex;
+    justify-content: flex-end;
     align-items: center;
-    gap: 8px;
+    min-height: 22px;
+    margin-bottom: -4px;
+}
+
+.project-tile h4 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+.project-tile p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+.concept-tags {
+    display: flex;
     flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 4px;
 }
 
-.project-tag {
+.concept-tag {
     display: inline-flex;
     align-items: center;
-    width: fit-content;
-    padding: 6px 10px;
+    padding: 4px 10px;
     border-radius: 999px;
-    background: var(--accent-soft);
-    border: 1px solid color-mix(in srgb, var(--accent) 16%, transparent);
-    color: var(--accent-strong);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    background: var(--social-surface);
+    border: 1px solid var(--social-border);
+    color: var(--text-heading-soft);
+    font-size: 0.74rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    padding-top: 4px;
+}
+
+.project-links .arrow-link {
+    margin-top: 0;
+    font-size: 0.88rem;
 }
 
 .status-pill {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 5px 10px;
+    gap: 7px;
+    padding: 4px 10px;
     border-radius: 999px;
-    font-size: 0.66rem;
-    font-weight: 700;
-    letter-spacing: 0.10em;
-    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
 }
 
-.status-pill .status-pill-dot {
+.status-pill-dot {
     width: 6px;
     height: 6px;
     border-radius: 999px;
+    background: currentColor;
+    box-shadow: 0 0 10px currentColor;
 }
 
 .status-pill--live {
@@ -722,53 +778,32 @@ html[data-theme="light"] .moon-icon {
     color: var(--success-text);
 }
 
-.status-pill--live .status-pill-dot {
-    background: var(--success);
-    box-shadow: 0 0 10px color-mix(in srgb, var(--success) 65%, transparent);
-}
-
 .status-pill--wip {
-    background: var(--warning-soft);
-    border: 1px solid var(--warning-border);
-    color: var(--warning-text);
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.28);
+    color: #f5b14b;
 }
 
-.status-pill--wip .status-pill-dot {
-    background: var(--warning);
-    box-shadow: 0 0 10px color-mix(in srgb, var(--warning) 60%, transparent);
+.status-pill--neutral {
+    background: var(--social-surface);
+    border: 1px solid var(--social-border);
+    color: var(--text-muted);
 }
 
-.project-list {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.project-item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid var(--divider);
-}
-
-.project-item:last-child {
+.research-card .list-item {
+    margin: 0;
     padding-bottom: 0;
     border-bottom: 0;
 }
 
-.project-item h4 {
-    margin: 2px 0 0;
+.research-card .list-meta {
+    color: var(--text-muted);
+    font-weight: 500;
 }
 
-.project-item p {
-    margin: 0;
+.research-card p {
+    margin-top: 6px;
     font-size: 0.9rem;
-}
-
-.project-item .arrow-link {
-    margin-top: 2px;
 }
 
 .arrow-link {
