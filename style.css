@@ -23,6 +23,10 @@
     --success-soft: rgba(88, 214, 141, 0.08);
     --success-border: rgba(88, 214, 141, 0.18);
     --success-text: #7ee2a9;
+    --warning: #f5b441;
+    --warning-soft: rgba(245, 180, 65, 0.10);
+    --warning-border: rgba(245, 180, 65, 0.22);
+    --warning-text: #f5c66e;
     --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.45);
     --shadow-md: 0 14px 40px rgba(0, 0, 0, 0.28);
     --button-primary-bg: linear-gradient(180deg, #ffffff, #dbe7f7);
@@ -91,6 +95,10 @@ html[data-theme="light"] {
     --success-soft: rgba(31, 155, 94, 0.1);
     --success-border: rgba(31, 155, 94, 0.18);
     --success-text: #1e7a4e;
+    --warning: #c98a14;
+    --warning-soft: rgba(201, 138, 20, 0.10);
+    --warning-border: rgba(201, 138, 20, 0.20);
+    --warning-text: #95680f;
     --shadow-lg: 0 20px 60px rgba(69, 92, 122, 0.16);
     --shadow-md: 0 14px 32px rgba(69, 92, 122, 0.12);
     --button-primary-bg: linear-gradient(180deg, #14345a, #31588a);
@@ -668,6 +676,13 @@ html[data-theme="light"] .moon-icon {
     gap: 0;
 }
 
+.project-tag-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
 .project-tag {
     display: inline-flex;
     align-items: center;
@@ -681,6 +696,46 @@ html[data-theme="light"] .moon-icon {
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+}
+
+.status-pill .status-pill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+}
+
+.status-pill--live {
+    background: var(--success-soft);
+    border: 1px solid var(--success-border);
+    color: var(--success-text);
+}
+
+.status-pill--live .status-pill-dot {
+    background: var(--success);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--success) 65%, transparent);
+}
+
+.status-pill--wip {
+    background: var(--warning-soft);
+    border: 1px solid var(--warning-border);
+    color: var(--warning-text);
+}
+
+.status-pill--wip .status-pill-dot {
+    background: var(--warning);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--warning) 60%, transparent);
 }
 
 .project-list {
