@@ -3,7 +3,6 @@ window.__portfolioScript = 'loaded';
 const initPortfolio = () => {
     window.__portfolioScript = 'initialised';
     const root = document.documentElement;
-    const cards = document.querySelectorAll('.card');
     const themeToggle = document.querySelector('.theme-toggle');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -26,29 +25,6 @@ const initPortfolio = () => {
         }
     };
 
-    const setPageDepth = (clientX, clientY) => {
-        const xPercent = (clientX / window.innerWidth) * 100;
-        const yPercent = (clientY / window.innerHeight) * 100;
-        const shiftX = ((clientX / window.innerWidth) - 0.5) * 18;
-        const shiftY = ((clientY / window.innerHeight) - 0.5) * 18;
-
-        root.style.setProperty('--page-mouse-x', `${xPercent}%`);
-        root.style.setProperty('--page-mouse-y', `${yPercent}%`);
-        root.style.setProperty('--bg-shift-x', `${shiftX}px`);
-        root.style.setProperty('--bg-shift-y', `${shiftY}px`);
-    };
-
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-        });
-    });
-
     if (themeToggle) {
         applyTheme(root.getAttribute('data-theme'));
         themeToggle.addEventListener('click', () => {
@@ -56,12 +32,6 @@ const initPortfolio = () => {
             applyTheme(currentTheme === 'light' ? 'dark' : 'light');
         });
     }
-
-    window.addEventListener('pointermove', (event) => {
-        setPageDepth(event.clientX, event.clientY);
-    }, { passive: true });
-
-    setPageDepth(window.innerWidth * 0.5, window.innerHeight * 0.35);
 
     // --- Project tile preview: only enable hover-bg when the image loads ---
     document.querySelectorAll('.project-tile[data-preview]').forEach((tile) => {
