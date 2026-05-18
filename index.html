@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
 <script>
 (() => {
   const stored = localStorage.getItem('theme');
-  document.documentElement.setAttribute('data-theme', stored === 'light' ? 'light' : 'dark');
+  document.documentElement.setAttribute('data-theme', stored === 'dark' ? 'dark' : 'light');
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,10 +59,7 @@ html[data-theme="light"] {
 html { scroll-behavior: smooth; }
 body {
     position: relative;
-    background:
-        radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 30%),
-        radial-gradient(circle at 88% 64%, rgba(132, 145, 170, 0.11), transparent 34%),
-        var(--bg);
+    background: var(--bg);
     color: var(--fg);
     font-family: var(--font-body);
     font-size: 16px;
@@ -71,7 +68,13 @@ body {
     transition: background 0.35s ease, color 0.25s ease;
     -webkit-font-smoothing: antialiased;
 }
-body::before {
+html[data-theme="dark"] body {
+    background:
+        radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 30%),
+        radial-gradient(circle at 88% 64%, rgba(132, 145, 170, 0.11), transparent 34%),
+        var(--bg);
+}
+html[data-theme="dark"] body::before {
     content: '';
     position: fixed;
     inset: 0;
@@ -81,6 +84,35 @@ body::before {
         linear-gradient(110deg, transparent 0 36%, color-mix(in srgb, var(--fg) 4%, transparent) 36% 36.5%, transparent 36.5% 100%),
         linear-gradient(160deg, transparent 0 58%, color-mix(in srgb, var(--accent) 4%, transparent) 58% 58.4%, transparent 58.4% 100%);
     opacity: 0.68;
+}
+html[data-theme="dark"] body::after {
+    content: '';
+    position: fixed;
+    inset: -20% -10%;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        linear-gradient(118deg, transparent 0 47%, rgba(94, 234, 212, 0.075) 47.08% 47.18%, transparent 47.28% 100%),
+        linear-gradient(124deg, transparent 0 64%, rgba(231, 231, 236, 0.055) 64.05% 64.16%, transparent 64.26% 100%),
+        linear-gradient(112deg, transparent 0 78%, rgba(106, 167, 255, 0.055) 78.04% 78.14%, transparent 78.24% 100%);
+    opacity: 0.82;
+    transform: translate3d(-18px, 22px, 0);
+}
+@media (prefers-reduced-motion: no-preference) {
+    html[data-theme="dark"] body::before {
+        animation: darkLinesIn 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    html[data-theme="dark"] body::after {
+        animation: darkSlashesIn 1100ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+    }
+}
+@keyframes darkLinesIn {
+    from { opacity: 0; transform: translate3d(-34px, 22px, 0) skewX(-2deg); }
+    to { opacity: 0.68; transform: translate3d(0, 0, 0) skewX(0); }
+}
+@keyframes darkSlashesIn {
+    from { opacity: 0; transform: translate3d(-92px, 72px, 0) skewX(-4deg); }
+    to { opacity: 0.82; transform: translate3d(-18px, 22px, 0) skewX(0); }
 }
 .page {
     max-width: 1200px;
@@ -171,7 +203,7 @@ body::before {
     min-height: 44px;
     margin-bottom: 38px;
     padding: 0 20px;
-    border-radius: 14px;
+    border-radius: 7px;
     background: var(--button-bg);
     border: 1px solid var(--button-border);
     box-shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
@@ -222,6 +254,25 @@ body::before {
 .nav-item a:hover .ind-static { width: 56px; background: var(--fg-soft); }
 .nav-item.is-active a { color: var(--fg); }
 .nav-item.is-active .ind-static { width: 64px; background: var(--fg); }
+@media (prefers-reduced-motion: no-preference) {
+    html[data-theme="dark"] .nav-item.is-active .ind-static {
+        animation: navDashSignal 2200ms ease-out infinite;
+    }
+}
+@keyframes navDashSignal {
+    0%, 72%, 100% {
+        opacity: 1;
+        box-shadow: none;
+    }
+    14% {
+        opacity: 1;
+        box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 54%, transparent);
+    }
+    30% {
+        opacity: 0.72;
+        box-shadow: none;
+    }
+}
 
 .intro-socials { display: flex; gap: 8px; margin-top: 44px; }
 .intro-socials a {
@@ -666,12 +717,30 @@ html[data-theme="light"] .demo-frame {
     }
 }
 .demo-pane {
+    position: relative;
     display: flex; flex-direction: column; gap: 10px;
     padding: 13px 14px 14px;
     border-radius: 10px;
     background: var(--d-pane-bg);
     border: 1px solid var(--d-border);
     min-height: 220px;
+    overflow: hidden;
+}
+.demo-pane > * { position: relative; z-index: 1; }
+html[data-theme="dark"] .demo-pane::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 36px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    background:
+        linear-gradient(180deg, transparent 0%, rgba(106, 167, 255, 0.05) 42%, rgba(231, 236, 243, 0.26) 50%, rgba(106, 167, 255, 0.055) 58%, transparent 100%),
+        linear-gradient(90deg, transparent, rgba(106, 167, 255, 0.14), rgba(231, 236, 243, 0.18), rgba(106, 167, 255, 0.14), transparent);
+    transform: translate3d(0, -44px, 0);
 }
 .demo-pane--output {
     background: var(--d-pane-bg);
@@ -768,6 +837,12 @@ html[data-theme="light"] .demo-frame {
 }
 
 @keyframes demoLineIn { to { opacity: 1; transform: translateY(0); } }
+@keyframes demoPaneScan {
+    0% { opacity: 0; transform: translate3d(0, -44px, 0); }
+    14% { opacity: 1; }
+    82% { opacity: 1; }
+    100% { opacity: 0; transform: translate3d(0, 248px, 0); }
+}
 @keyframes demoPulse {
     0%   { opacity: 0; left: 14%; transform: translate(-50%, -50%) scale(0.6); }
     12%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
@@ -778,6 +853,7 @@ html[data-theme="light"] .demo-frame {
 .demo-frame.is-running .demo-pane--input .demo-line[data-stagger="0"] { animation: demoLineIn 360ms ease-out 0ms forwards; }
 .demo-frame.is-running .demo-pane--input .demo-line[data-stagger="1"] { animation: demoLineIn 360ms ease-out 220ms forwards; }
 .demo-frame.is-running .demo-pane--input .demo-line[data-stagger="2"] { animation: demoLineIn 360ms ease-out 440ms forwards; }
+html[data-theme="dark"] .demo-frame.is-running .demo-pane::after { animation: demoPaneScan 2300ms cubic-bezier(0.16, 1, 0.3, 1) 420ms both; }
 .demo-frame.is-running .demo-connector-pulse { animation: demoPulse 1500ms cubic-bezier(0.55, 0.06, 0.45, 0.94) 700ms forwards; }
 .demo-frame.is-running .demo-pane--output .demo-line[data-stagger="0"] { animation: demoLineIn 360ms ease-out 2200ms forwards; }
 .demo-frame.is-running .demo-pane--output .demo-line[data-stagger="1"] { animation: demoLineIn 360ms ease-out 2400ms forwards; }
@@ -806,6 +882,7 @@ html[data-theme="light"] .demo-frame {
 @media (prefers-reduced-motion: reduce) {
     .demo-frame .demo-line, .demo-frame .demo-total, .demo-frame .demo-meta { opacity: 1; transform: none; animation: none !important; }
     .demo-frame .demo-pane-icon--accent { opacity: 1; transform: none; }
+    .demo-pane::after { display: none; }
     .demo-frame .demo-connector-pulse { display: none; }
 }
 </style>
