@@ -21,7 +21,7 @@
 
     <link rel="icon" type="image/svg+xml" href="icons/favicon-jv.svg">
     <link rel="alternate icon" href="icons/favicon-jv.svg">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3">
 
     <meta name="description"
         content="Jasper Valk — AI Engineer, Data Scientist, and founder of SubsidieMatch. I build AI systems that handle real money: automated subsidy matching for Dutch businesses, validated against real RVO payouts.">
@@ -211,80 +211,46 @@
                     </a>
                 </div>
 
-                <div class="stat-grid" role="list">
-                    <div class="stat-tile" role="listitem">
-                        <div class="stat-value" data-target="7729" data-prefix="" data-suffix="+" data-format="comma"><span class="stat-num">7,729</span><span class="stat-unit">+</span></div>
-                        <div class="stat-label">RVO meldcodes indexed</div>
-                        <div class="stat-detail">EIA · ISDE · MIA/Vamil · 2026</div>
-                    </div>
-                    <div class="stat-tile" role="listitem">
-                        <div class="stat-value" data-target="30" data-prefix="~" data-suffix="s"><span class="stat-num">~30</span><span class="stat-unit">s</span></div>
-                        <div class="stat-label">PDF → matched subsidies</div>
-                        <div class="stat-detail">Claude Vision · temperature=0 · cached</div>
-                    </div>
-                    <div class="stat-tile" role="listitem">
-                        <div class="stat-value" data-target="91.3" data-suffix="%" data-decimals="1"><span class="stat-num">91.3</span><span class="stat-unit">%</span></div>
-                        <div class="stat-label">Accuracy vs real RVO payout</div>
-                        <div class="stat-detail">€7,172 predicted vs €7,856 actual</div>
-                    </div>
-                    <div class="stat-tile" role="listitem">
-                        <div class="stat-value" data-target="4664" data-prefix="+€" data-format="comma"><span class="stat-num">+€4,664</span></div>
-                        <div class="stat-label">Recovered on one offerte</div>
-                        <div class="stat-detail">Kozijn + glas combined matching</div>
-                    </div>
-                </div>
-
                 <div class="deep-dive-grid">
                     <article class="deep-dive">
-                        <div class="deep-dive-header">
-                            <span class="deep-dive-num">01</span>
-                            <h4>PDF Vision Extraction</h4>
+                        <div class="deep-dive-hero" data-target="30" data-prefix="~" data-suffix="s">
+                            <span class="deep-dive-hero-num">~30</span><span class="deep-dive-hero-unit">s</span>
                         </div>
-                        <p class="deep-dive-line"><span class="deep-dive-tag">Challenge</span>determinism — same PDF in, same matches out.</p>
-                        <p class="deep-dive-line deep-dive-line--result"><span class="deep-dive-tag">Result</span><strong>bit-for-bit reproducible</strong> via SHA-256 + SQLite cache.</p>
+                        <h4 class="deep-dive-title">PDF Vision Extraction</h4>
+                        <p class="deep-dive-caption">PDF → matched subsidies via Claude Vision, <code>temperature=0</code>, cached.</p>
+                        <p class="deep-dive-challenge">Determinism — same PDF in, same matches out.</p>
+                        <p class="deep-dive-result"><strong>Bit-for-bit reproducible</strong> via SHA-256 + SQLite cache.</p>
                     </article>
                     <article class="deep-dive">
-                        <div class="deep-dive-header">
-                            <span class="deep-dive-num">02</span>
-                            <h4>Subsidy Matching Engine</h4>
+                        <div class="deep-dive-hero" data-target="91.3" data-suffix="%" data-decimals="1">
+                            <span class="deep-dive-hero-num">91.3</span><span class="deep-dive-hero-unit">%</span>
                         </div>
-                        <p class="deep-dive-line"><span class="deep-dive-tag">Challenge</span>brand-specific disambiguation across 7,729+ meldcodes.</p>
-                        <p class="deep-dive-line deep-dive-line--result"><span class="deep-dive-tag">Result</span><strong>91.3% vs real RVO payout</strong> — €7,172 predicted, €7,856 actual.</p>
+                        <h4 class="deep-dive-title">Subsidy Matching Engine</h4>
+                        <p class="deep-dive-caption">Accuracy vs a real RVO payout — €7,172 predicted vs €7,856 actual.</p>
+                        <p class="deep-dive-challenge">Brand-specific disambiguation across 7,729+ meldcodes.</p>
                     </article>
                     <article class="deep-dive">
-                        <div class="deep-dive-header">
-                            <span class="deep-dive-num">03</span>
-                            <h4>WBSO Quickscan</h4>
+                        <div class="deep-dive-hero deep-dive-hero--fraction">
+                            <span class="deep-dive-hero-num">3<span class="deep-dive-hero-slash">/</span><span class="deep-dive-hero-denom">4</span></span>
                         </div>
-                        <p class="deep-dive-line"><span class="deep-dive-tag">Challenge</span>classify S&amp;O activities without false positives.</p>
-                        <p class="deep-dive-line deep-dive-line--result"><span class="deep-dive-tag">Result</span><strong>3 / 4 high-confidence</strong> on first real client document.</p>
+                        <h4 class="deep-dive-title">WBSO Quickscan</h4>
+                        <p class="deep-dive-caption">Activities classified as <em>high-confidence</em> on the first real client document.</p>
+                        <p class="deep-dive-challenge">Classify S&amp;O activities without false positives under the ~20% stricter 2024+ regime.</p>
                     </article>
                     <article class="deep-dive">
-                        <div class="deep-dive-header">
-                            <span class="deep-dive-num">04</span>
-                            <h4>Arbitrage Engine</h4>
+                        <div class="deep-dive-hero" data-target="4664" data-prefix="+€" data-format="comma">
+                            <span class="deep-dive-hero-num">+€4,664</span>
                         </div>
-                        <p class="deep-dive-line"><span class="deep-dive-tag">Challenge</span>find alternatives without violating RVO combination rules.</p>
-                        <p class="deep-dive-line deep-dive-line--result"><span class="deep-dive-tag">Result</span><strong>+ €4,664 recovered</strong> via kozijn + glas combined matching.</p>
+                        <h4 class="deep-dive-title">Arbitrage Engine</h4>
+                        <p class="deep-dive-caption">Recovered on a single offerte via kozijn + glas combined matching.</p>
+                        <p class="deep-dive-challenge">Find alternatives without violating RVO combination rules (EIA + ISDE excluded).</p>
                     </article>
                 </div>
 
-                <div class="stack-flow" aria-label="SubsidieMatch architecture flow">
-                    <div class="stack-flow-row">
-                        <span class="stack-chip stack-chip--frontend">Next.js 14</span>
-                        <span class="stack-arrow" aria-hidden="true">→</span>
-                        <span class="stack-chip stack-chip--backend">FastAPI</span>
-                        <span class="stack-arrow" aria-hidden="true">→</span>
-                        <span class="stack-chip stack-chip--ai">Claude · Instructor · Pydantic v2</span>
-                        <span class="stack-arrow" aria-hidden="true">→</span>
-                        <span class="stack-chip stack-chip--data">7,729 codes (JSON + SQLite cache)</span>
-                    </div>
-                    <div class="stack-flow-row stack-flow-row--secondary">
-                        <span class="stack-chip stack-chip--auth">Supabase Auth · RLS</span>
-                        <span class="stack-chip stack-chip--pay">Stripe</span>
-                        <span class="stack-chip stack-chip--host">Railway · Vercel · TransIP</span>
-                    </div>
-                </div>
+                <p class="stack-line" aria-label="SubsidieMatch architecture">
+                    <span class="stack-line-row">Next.js 14 → FastAPI → Claude + Instructor + Pydantic v2 → 7,729 subsidy codes (JSON + SQLite cache)</span>
+                    <span class="stack-line-row stack-line-row--secondary">Supabase Auth · RLS · Stripe · Railway · Vercel · TransIP</span>
+                </p>
             </div>
         </section>
 
@@ -586,7 +552,7 @@
 
     </main>
 
-    <script src="script.js?v=5"></script>
+    <script src="script.js?v=6"></script>
 </body>
 
 </html>

@@ -132,7 +132,7 @@ const initPortfolio = () => {
     const animateCount = (el) => {
         const target = parseFloat(el.dataset.target);
         if (isNaN(target)) return;
-        const numEl = el.querySelector('.stat-num');
+        const numEl = el.querySelector('.stat-num, .deep-dive-hero-num') || el;
         if (!numEl) return;
 
         const opts = {
@@ -238,7 +238,7 @@ const initPortfolio = () => {
         }
     });
 
-    const statTargets = document.querySelectorAll('.stat-value[data-target]');
+    const countTargets = document.querySelectorAll('.stat-value[data-target], .deep-dive-hero[data-target]');
     if (prefersReducedMotion || !('IntersectionObserver' in window)) {
         // leave the static values in place
     } else {
@@ -250,7 +250,7 @@ const initPortfolio = () => {
                 }
             });
         }, { threshold: 0.4 });
-        statTargets.forEach((el) => countObserver.observe(el));
+        countTargets.forEach((el) => countObserver.observe(el));
     }
 };
 

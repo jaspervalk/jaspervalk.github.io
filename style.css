@@ -1573,67 +1573,9 @@ html[data-theme="light"] .demo-frame {
     }
 }
 
-/* Stat tiles */
-.stat-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 14px;
-}
-
-.stat-tile {
-    display: flex;
-    flex-direction: column;
-    padding: 18px 18px 16px;
-    border-radius: 16px;
-    background: var(--tech-surface);
-    border: 1px solid var(--tech-border);
-    min-height: 132px;
-    transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
-}
-
-.stat-tile .stat-detail {
-    margin-top: auto;
-}
-
-.stat-tile:hover {
-    transform: translateY(-2px);
-    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
-    background: var(--accent-soft-strong);
-}
-
-.stat-value {
-    font-family: 'JetBrains Mono', 'Space Grotesk', monospace;
-    font-size: clamp(1.7rem, 2.6vw, 2.15rem);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-    line-height: 1;
-    margin-bottom: 8px;
-    font-variant-numeric: tabular-nums;
-}
-
-.stat-unit {
-    color: var(--accent-strong);
-    font-size: 0.7em;
-    margin-left: 2px;
-}
-
-.stat-label {
-    color: var(--text-heading-soft);
-    font-size: 0.94rem;
-    font-weight: 600;
-    margin-bottom: 4px;
-    letter-spacing: -0.005em;
-}
-
-.stat-detail {
-    color: var(--text-muted);
-    font-size: 0.82rem;
-    line-height: 1.5;
-    font-weight: 500;
-}
-
-/* Deep-dive cards (single col → 2x2) */
+/* Deep-dive cards — strict 2x2 at ≥640px.
+   Each card leads with a hero number, then title, caption,
+   then the (muted) challenge line and (bold) result line. */
 .deep-dive-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -1651,134 +1593,129 @@ html[data-theme="light"] .demo-frame {
 .deep-dive {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 22px;
+    gap: 8px;
+    padding: 24px;
     border-radius: 18px;
     background: var(--tech-surface);
-    border: 1px solid var(--tech-border);
+    border: 1px solid var(--card-border);
     transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
 }
 
 .deep-dive:hover {
     transform: translateY(-3px);
-    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
-    background: var(--accent-soft-strong);
+    border-color: var(--card-border-strong);
+    background: color-mix(in srgb, var(--card-border) 8%, var(--tech-surface));
 }
 
-.deep-dive-header {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-}
-
-.deep-dive-num {
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--accent-strong);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-}
-
-.deep-dive h4 {
-    font-family: var(--font-heading);
-    font-size: 1.05rem;
-    letter-spacing: -0.01em;
-}
-
-.deep-dive-line {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-.deep-dive-line strong {
-    color: var(--text-primary);
-    font-weight: 600;
-}
-
-.deep-dive-line--result strong {
-    color: var(--success-text);
-}
-
-.deep-dive-tag {
-    flex-shrink: 0;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.66rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    background: var(--social-surface);
-    border: 1px solid var(--social-border);
-    border-radius: 5px;
-    padding: 2px 7px;
-    line-height: 1.4;
-}
-
-.deep-dive-line--result .deep-dive-tag {
-    color: var(--success-text);
-    border-color: var(--success-border);
-    background: var(--success-soft);
-}
-
-/* Stack flow strip */
-.stack-flow {
-    display: grid;
-    gap: 10px;
-    padding: 18px;
-    border-radius: 16px;
-    background: var(--tech-surface);
-    border: 1px solid var(--tech-border);
-}
-
-.stack-flow-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-}
-
-.stack-flow-row--secondary {
-    opacity: 0.85;
-    padding-top: 10px;
-    border-top: 1px dashed var(--divider);
-}
-
-.stack-chip {
+.deep-dive-hero {
     display: inline-flex;
-    align-items: center;
-    padding: 7px 12px;
-    border-radius: 10px;
+    align-items: baseline;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 4px;
+}
+
+.deep-dive-hero-num {
+    color: var(--text-primary);
+}
+
+.deep-dive-hero-unit {
+    font-size: 0.55em;
+    color: var(--text-muted);
     font-weight: 500;
+    margin-left: 2px;
+}
+
+.deep-dive-hero-slash {
+    color: var(--text-muted);
+    font-weight: 400;
+    margin: 0 1px;
+}
+
+.deep-dive-hero-denom {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.deep-dive-title {
+    font-family: var(--font-heading);
+    font-size: 1.08rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.deep-dive-caption,
+.deep-dive-challenge,
+.deep-dive-result {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+}
+
+.deep-dive-caption {
     color: var(--text-heading-soft);
-    background: var(--social-surface);
-    border: 1px solid var(--social-border);
-    white-space: nowrap;
 }
 
-.stack-chip--frontend { border-color: color-mix(in srgb, #06b6d4 28%, transparent); color: #5fd3e4; }
-.stack-chip--backend  { border-color: color-mix(in srgb, #22c55e 28%, transparent); color: var(--success-text); }
-.stack-chip--ai       { border-color: color-mix(in srgb, var(--accent) 36%, transparent); color: var(--accent-strong); }
-.stack-chip--data     { border-color: color-mix(in srgb, #a78bfa 28%, transparent); color: #c4b5fd; }
-.stack-chip--auth,
-.stack-chip--pay,
-.stack-chip--host {
-    color: var(--text-muted);
-}
-
-html[data-theme="light"] .stack-chip--frontend { color: #0e7490; }
-html[data-theme="light"] .stack-chip--data { color: #6d28d9; }
-
-.stack-arrow {
-    color: var(--text-muted);
+.deep-dive-caption code {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.95rem;
+    font-size: 0.84em;
+    padding: 1px 5px;
+    border-radius: 5px;
+    background: color-mix(in srgb, var(--card-border) 35%, transparent);
+    color: var(--text-primary);
+}
+
+.deep-dive-caption em {
+    font-style: normal;
+    color: var(--success-text);
+    font-weight: 500;
+}
+
+.deep-dive-challenge {
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+.deep-dive-result {
+    color: var(--text-secondary);
+}
+
+.deep-dive-result strong {
+    color: var(--success-text);
+    font-weight: 600;
+}
+
+/* Architecture line — single monospace flow, no pills, no boxes. */
+.stack-line {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 0 0;
+    margin: 4px 0 0;
+    border-top: 1px solid var(--divider);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.84rem;
+    color: var(--text-heading-soft);
+    letter-spacing: -0.005em;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+.stack-line-row {
+    display: block;
+}
+
+.stack-line-row--secondary {
+    color: var(--text-muted);
+    font-size: 0.78rem;
 }
 
 /* Stack columns — explicit breakpoints: 1col / 2col / 4col */
@@ -1968,25 +1905,24 @@ html[data-theme="light"] .stack-chip--data { color: #6d28d9; }
         text-align: center;
     }
 
-    .stat-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-    }
-
-    .stat-tile {
-        padding: 14px 14px 12px;
-    }
-
     .deep-dive-grid {
         grid-template-columns: 1fr;
     }
 
-    .stack-flow {
-        padding: 14px;
+    .deep-dive {
+        padding: 20px;
     }
 
-    .stack-arrow {
-        display: none;
+    .deep-dive-hero {
+        font-size: clamp(1.8rem, 7vw, 2.3rem);
+    }
+
+    .stack-line {
+        font-size: 0.78rem;
+    }
+
+    .stack-line-row--secondary {
+        font-size: 0.72rem;
     }
 
     .demo-frame {
