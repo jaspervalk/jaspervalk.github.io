@@ -15,9 +15,9 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="icons/favicon-jv.svg">
 <link rel="alternate icon" href="icons/favicon-jv.svg">
-<meta name="description" content="Jasper Valk is an AI Engineer, Data Scientist, and founder of SubsidieMatch. He builds production AI systems for document-heavy workflows, subsidy matching, healthcare analytics, and applied machine learning.">
+<meta name="description" content="Jasper Valk is an AI Engineer, Data Scientist, founder of SubsidieMatch, and co-founder of inklaretaal. He builds production AI products from first idea to launch.">
 <meta property="og:title" content="Jasper Valk — AI Engineer · Data Scientist · Founder">
-<meta property="og:description" content="Building SubsidieMatch and production AI systems for document-heavy, high-stakes workflows.">
+<meta property="og:description" content="Building SubsidieMatch, inklaretaal, and production AI systems from prototype to launch.">
 <meta property="og:type" content="website">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -344,6 +344,7 @@ html[data-theme="dark"] body::after {
 
 /* Section heading anchor target — accounts for sticky label */
 .section { scroll-margin-top: 96px; }
+.entry[id] { scroll-margin-top: 72px; }
 
 /* Featured / SubsidieMatch */
 .featured h2 {
@@ -901,13 +902,13 @@ html[data-theme="dark"] .demo-frame.is-running .demo-pane::after { animation: de
         <h1>Jasper Valk</h1>
         <p class="role">AI Engineer &middot; Data Scientist &middot; Founder</p>
         <p class="bio">
-            <strong>I build production AI systems for document-heavy workflows.</strong> Currently building <a href="#featured">SubsidieMatch</a>: PDF quotes in, exact subsidy codes out, validated against real RVO payouts.
+            <strong>I build production AI products from first idea to launch.</strong> Currently building <a href="#featured">SubsidieMatch</a> and co-building <a href="#inklaretaal">inklaretaal</a>, a personalized plain-Dutch AI newsletter and learning product.
         </p>
         <a class="primary-cta link-ext" href="https://www.subsidiematch.com" target="_blank" rel="noopener noreferrer">See it live: subsidiematch.com</a>
         <nav class="nav" aria-label="Section navigation">
             <ul class="nav-list" id="navList">
                 <li class="nav-item is-active"><a href="#featured"><span class="ind-static"></span>SubsidieMatch</a></li>
-                <li class="nav-item"><a href="#work"><span class="ind-static"></span>Other work</a></li>
+                <li class="nav-item"><a href="#work"><span class="ind-static"></span>Selected work</a></li>
                 <li class="nav-item"><a href="#experience"><span class="ind-static"></span>Experience</a></li>
                 <li class="nav-item"><a href="#research"><span class="ind-static"></span>Research</a></li>
                 <li class="nav-item"><a href="#stack"><span class="ind-static"></span>Stack</a></li>
@@ -1001,9 +1002,18 @@ html[data-theme="dark"] .demo-frame.is-running .demo-pane::after { animation: de
             </p>
         </section>
 
-        <!-- OTHER WORK -->
+        <!-- SELECTED WORK -->
         <section class="section reveal" id="work" data-section="work">
-            <p class="section-label">Other work</p>
+            <p class="section-label">Selected work</p>
+            <div class="entry has-preview-target" id="inklaretaal" data-preview="images/inklaretaal-preview.png" data-preview-position="center">
+                <span class="entry-bg" aria-hidden="true"></span>
+                <div class="entry-side">Pre-launch · 2026</div>
+                <div class="entry-main">
+                    <h3><a class="link-ext" href="https://inklaretaal.nl" target="_blank" rel="noopener noreferrer">inklaretaal</a></h3>
+                    <p>Personalized AI news and learning in plain Dutch. A gather-once Python and Claude pipeline turns the week's news into editions tailored by profession and depth, backed by a complete Next.js subscription product.</p>
+                    <div class="tags"><span class="tag">AI Personalization</span><span class="tag">Next.js + Python</span><span class="tag">Product Engineering</span></div>
+                </div>
+            </div>
             <div class="entry has-preview-target" data-preview="images/21-newsletter-agent.png" data-preview-position="top">
                 <span class="entry-bg" aria-hidden="true"></span>
                 <div class="entry-side">Live · 2025</div>
@@ -1041,6 +1051,13 @@ html[data-theme="dark"] .demo-frame.is-running .demo-pane::after { animation: de
                 <div class="entry-main">
                     <h3>Founder &amp; sole engineer · SubsidieMatch</h3>
                     <p>Building a paid B2B/B2C SaaS end to end: FastAPI backend, Next.js 14 frontend, Claude-based PDF extraction, 7,729-code matcher, Stripe billing, Supabase auth + RLS, Railway, and Vercel. Live at <a class="link-ext" href="https://www.subsidiematch.com" target="_blank" rel="noopener noreferrer">subsidiematch.com</a>.</p>
+                </div>
+            </div>
+            <div class="entry">
+                <div class="entry-side">2026 - Now</div>
+                <div class="entry-main">
+                    <h3>Co-founder &amp; engineer · inklaretaal</h3>
+                    <p>Co-building a personalized Dutch AI news and learning product with Bor Ipema. I designed and implemented the Next.js product, subscription flows, and Python generation worker using Claude, Supabase, Stripe, and Resend. Preparing for launch at <a class="link-ext" href="https://inklaretaal.nl" target="_blank" rel="noopener noreferrer">inklaretaal.nl</a>.</p>
                 </div>
             </div>
             <div class="entry">
