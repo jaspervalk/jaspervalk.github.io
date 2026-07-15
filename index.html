@@ -226,11 +226,14 @@ html[data-theme="dark"] body::after {
 .cta-group {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    width: max-content;
+    max-width: 100%;
     gap: 10px;
     margin-bottom: 38px;
 }
-.cta-group .primary-cta { margin-bottom: 0; }
+.cta-group .primary-cta,
+.cta-group .secondary-cta { width: 100%; margin-bottom: 0; }
 .secondary-cta {
     display: inline-flex;
     align-items: center;
@@ -933,8 +936,8 @@ html[data-theme="dark"] .demo-frame.is-running .demo-pane::after { animation: de
 
 <div class="page">
     <aside class="intro">
-        <a class="launch-pill" href="https://www.subsidiematch.com" target="_blank" rel="noopener noreferrer">
-            <span>Building</span> SubsidieMatch
+        <a class="launch-pill" href="https://inklaretaal.nl" target="_blank" rel="noopener noreferrer">
+            <span>Now live</span> inklaretaal
         </a>
         <h1>Jasper Valk</h1>
         <p class="role">AI Engineer &middot; Data Scientist &middot; Founder</p>
@@ -1047,11 +1050,11 @@ html[data-theme="dark"] .demo-frame.is-running .demo-pane::after { animation: de
             <p class="section-label">Selected work</p>
             <div class="entry has-preview-target" id="inklaretaal" data-preview="images/inklaretaal-preview.png" data-preview-position="center">
                 <span class="entry-bg" aria-hidden="true"></span>
-                <div class="entry-side">Pre-launch · 2026</div>
+                <div class="entry-side">Live · 2026</div>
                 <div class="entry-main">
                     <h3><a class="link-ext" href="https://inklaretaal.nl" target="_blank" rel="noopener noreferrer">inklaretaal</a></h3>
-                    <p>Personalized AI news and learning in plain Dutch. A gather-once Python and Claude pipeline turns the week's news into editions tailored by profession and depth, backed by a complete Next.js subscription product.</p>
-                    <div class="tags"><span class="tag">AI Personalization</span><span class="tag">Next.js + Python</span><span class="tag">Product Engineering</span></div>
+                    <p>Personalized plain-Dutch AI newsletter and learning product — live, with paying B2C subscribers (B2B teams in development). An agentic Claude + web-search pipeline builds one weekly news corpus, then tailors it across 15 professions and 3 levels, prompt-cached to scale. Next.js 16 + Python, Supabase, Stripe, Resend.</p>
+                    <div class="tags"><span class="tag">Agentic Pipeline</span><span class="tag">Personalization at Scale</span><span class="tag">Full-Stack Product</span></div>
                 </div>
             </div>
             <div class="entry has-preview-target" data-preview="images/21-newsletter-agent.png" data-preview-position="top">
@@ -1097,7 +1100,7 @@ html[data-theme="dark"] .demo-frame.is-running .demo-pane::after { animation: de
                 <div class="entry-side">2026 - Now</div>
                 <div class="entry-main">
                     <h3>Co-founder &amp; engineer · inklaretaal</h3>
-                    <p>Co-building a personalized Dutch AI news and learning product with Bor Ipema. I designed and implemented the Next.js product, subscription flows, and Python generation worker using Claude, Supabase, Stripe, and Resend. Preparing for launch at <a class="link-ext" href="https://inklaretaal.nl" target="_blank" rel="noopener noreferrer">inklaretaal.nl</a>.</p>
+                    <p>Co-building a personalized Dutch AI news and learning product with Bor Ipema — now live with paying subscribers. I built the Next.js 16 product and Stripe subscription flows plus a Python generation worker: an agentic Claude + web-search gather stage feeding per-reader, prompt-cached personalization across 15 professions and 3 levels, with idempotent weekly delivery. Stack: Supabase, Stripe, Resend, Vercel. Live at <a class="link-ext" href="https://inklaretaal.nl" target="_blank" rel="noopener noreferrer">inklaretaal.nl</a>.</p>
                 </div>
             </div>
             <div class="entry">
