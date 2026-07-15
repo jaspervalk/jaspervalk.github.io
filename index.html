@@ -222,6 +222,43 @@ html[data-theme="dark"] body::after {
     color: color-mix(in srgb, var(--button-fg) 58%, transparent);
 }
 
+/* CTA group — filled primary + outlined secondary, clear hierarchy */
+.cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 38px;
+}
+.cta-group .primary-cta { margin-bottom: 0; }
+.secondary-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-height: 44px;
+    padding: 0 20px;
+    border-radius: 0;
+    background: transparent;
+    border: 1px solid color-mix(in srgb, var(--fg) 20%, transparent);
+    color: var(--fg);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, color 0.22s ease;
+}
+.secondary-cta:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--fg) 45%, transparent);
+    background: var(--accent-soft);
+}
+.secondary-cta.link-ext::after {
+    color: var(--fg-muted);
+}
+.secondary-cta.link-ext:hover::after {
+    color: var(--accent);
+}
+
 /* Nav with sliding indicator */
 .nav { display: none; }
 @media (min-width: 1024px) {
@@ -904,7 +941,10 @@ html[data-theme="dark"] .demo-frame.is-running .demo-pane::after { animation: de
         <p class="bio">
             <strong>I build production AI products from first idea to launch.</strong> Currently building <a href="#featured">SubsidieMatch</a> and co-building <a href="#inklaretaal">inklaretaal</a>, a personalized plain-Dutch AI newsletter and learning product.
         </p>
-        <a class="primary-cta link-ext" href="https://www.subsidiematch.com" target="_blank" rel="noopener noreferrer">See it live: subsidiematch.com</a>
+        <div class="cta-group">
+            <a class="primary-cta link-ext" href="https://www.subsidiematch.com" target="_blank" rel="noopener noreferrer">See it live: subsidiematch.com</a>
+            <a class="secondary-cta link-ext" href="https://inklaretaal.nl" target="_blank" rel="noopener noreferrer">See it live: inklaretaal.nl</a>
+        </div>
         <nav class="nav" aria-label="Section navigation">
             <ul class="nav-list" id="navList">
                 <li class="nav-item is-active"><a href="#featured"><span class="ind-static"></span>SubsidieMatch</a></li>
