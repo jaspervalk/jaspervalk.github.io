@@ -926,6 +926,76 @@ html[data-theme="dark"] .demo-frame.is-running .demo-pane::after { animation: de
     .demo-pane::after { display: none; }
     .demo-frame .demo-connector-pulse { display: none; }
 }
+
+/* ============================================================
+   inklaretaal demo — reuses .demo-frame chrome, adds its own
+   plain-Dutch personalization content + staggered reveal
+   ============================================================ */
+.inkl-headline {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--d-fg);
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(6px);
+}
+.inkl-jargon { color: var(--d-blue); font-weight: 600; }
+.inkl-source {
+    margin-top: auto;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--d-fg-muted);
+    opacity: 0;
+    transform: translateY(6px);
+}
+.inkl-feed { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
+.inkl-feed li {
+    font-size: 0.66rem; color: var(--d-fg-muted);
+    padding: 4px 8px; border-radius: 5px;
+    background: var(--d-surface-soft); border: 1px solid var(--d-border);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    opacity: 0; transform: translateY(6px);
+}
+.demo-frame.is-running .inkl-feed li[data-stagger="0"] { animation: inklIn 340ms ease-out 360ms forwards; }
+.demo-frame.is-running .inkl-feed li[data-stagger="1"] { animation: inklIn 340ms ease-out 480ms forwards; }
+.inkl-niveaus { display: flex; gap: 4px; margin-bottom: 9px; }
+.inkl-niveau {
+    font-size: 0.56rem; font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 2px 7px; border-radius: 3px;
+    color: var(--d-fg-muted);
+    background: var(--d-surface-soft); border: 1px solid var(--d-border);
+}
+.inkl-niveau.is-active {
+    color: var(--d-fg);
+    background: var(--d-surface);
+    border-color: color-mix(in srgb, var(--d-fg) 22%, var(--d-border));
+}
+.inkl-cards { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.inkl-card {
+    padding: 7px 9px; border-radius: 7px;
+    background: var(--d-surface-soft); border: 1px solid var(--d-border);
+    opacity: 0; transform: translateY(8px);
+}
+.inkl-card-vak {
+    font-size: 0.55rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--d-blue); margin-bottom: 2px;
+}
+.inkl-card-title { font-size: 0.73rem; font-weight: 600; color: var(--d-fg); margin-bottom: 1px; }
+.inkl-card-body { font-size: 0.65rem; line-height: 1.45; color: var(--d-fg-soft); }
+.inkl-meta { margin-top: 9px; padding: 0 2px; font-size: 0.62rem; color: var(--d-fg-muted); opacity: 0; transform: translateY(6px); }
+
+@keyframes inklIn { to { opacity: 1; transform: translateY(0); } }
+.demo-frame.is-running .inkl-headline { animation: inklIn 360ms ease-out 200ms forwards; }
+.demo-frame.is-running .inkl-source   { animation: inklIn 360ms ease-out 560ms forwards; }
+.demo-frame.is-running .inkl-card[data-stagger="0"] { animation: inklIn 420ms ease-out 1600ms forwards; }
+.demo-frame.is-running .inkl-card[data-stagger="1"] { animation: inklIn 420ms ease-out 1820ms forwards; }
+.demo-frame.is-running .inkl-card[data-stagger="2"] { animation: inklIn 420ms ease-out 2040ms forwards; }
+.demo-frame.is-running .inkl-meta { animation: inklIn 400ms ease-out 2340ms forwards; }
+@media (prefers-reduced-motion: reduce) {
+    .inkl-headline, .inkl-source, .inkl-card, .inkl-meta, .inkl-feed li { opacity: 1; transform: none; animation: none !important; }
+}
 </style>
 </head>
 <body>
@@ -951,6 +1021,7 @@ html[data-theme="dark"] .demo-frame.is-running .demo-pane::after { animation: de
         <nav class="nav" aria-label="Section navigation">
             <ul class="nav-list" id="navList">
                 <li class="nav-item is-active"><a href="#featured"><span class="ind-static"></span>SubsidieMatch</a></li>
+                <li class="nav-item"><a href="#inklaretaal"><span class="ind-static"></span>inklaretaal</a></li>
                 <li class="nav-item"><a href="#work"><span class="ind-static"></span>Selected work</a></li>
                 <li class="nav-item"><a href="#experience"><span class="ind-static"></span>Experience</a></li>
                 <li class="nav-item"><a href="#research"><span class="ind-static"></span>Research</a></li>
@@ -1045,18 +1116,98 @@ html[data-theme="dark"] .demo-frame.is-running .demo-pane::after { animation: de
             </p>
         </section>
 
+        <!-- INKLARETAAL -->
+        <section class="section featured reveal" id="inklaretaal" data-section="inklaretaal">
+            <p class="section-label">inklaretaal</p>
+            <h2>
+                <a class="link-ext" href="https://inklaretaal.nl" target="_blank" rel="noopener noreferrer">inklaretaal</a>
+            </h2>
+            <p class="lede">inklaretaal takes the same week's AI news and rewrites it in plain Dutch — tuned to your profession and reading level. One agentic gather pass builds the week's corpus; a per-reader pass then personalizes it across <span class="num">15</span> professions and <span class="num">3</span> depth levels.</p>
+            <p class="badges">
+                <span>·</span> <strong>Co-founder</strong>
+                <span>·</span> <strong>Live product</strong>
+                <span>·</span> <strong>Paying subscribers</strong>
+            </p>
+
+            <!-- Personalization demo: one raw headline → plain-Dutch, per profession -->
+            <a class="demo-frame" data-demo href="https://inklaretaal.nl" target="_blank" rel="noopener noreferrer" aria-label="inklaretaal demo">
+                <div class="demo-pane demo-pane--input" aria-hidden="true">
+                    <header class="demo-pane-header">
+                        <span class="demo-pane-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0V9a2 2 0 0 1 2-2h2"/><line x1="18" y1="14" x2="10" y2="14"/><line x1="15" y1="18" x2="10" y2="18"/><line x1="18" y1="6" x2="10" y2="6"/></svg></span>
+                        <span class="demo-pane-title">AI-nieuws</span>
+                        <span class="demo-pane-badge">in</span>
+                    </header>
+                    <p class="inkl-headline">"OpenAI lanceert <span class="inkl-jargon">GPT-4o</span> — een <span class="inkl-jargon">multimodaal</span> model met realtime <span class="inkl-jargon">vision-capaciteiten</span>."</p>
+                    <ul class="inkl-feed">
+                        <li data-stagger="0">Anthropic brengt nieuwe Claude-versie uit</li>
+                        <li data-stagger="1">Google DeepMind toont agent voor planning</li>
+                    </ul>
+                    <span class="inkl-source">1 corpus / week · agentic web search</span>
+                </div>
+                <div class="demo-connector" aria-hidden="true">
+                    <div class="demo-connector-track"><span class="demo-connector-pulse"></span></div>
+                    <span class="demo-connector-label">klare taal</span>
+                </div>
+                <div class="demo-pane demo-pane--output" aria-hidden="true">
+                    <header class="demo-pane-header">
+                        <span class="demo-pane-icon demo-pane-icon--accent"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        <span class="demo-pane-title">jouw editie</span>
+                        <span class="demo-pane-badge demo-pane-badge--ok">out</span>
+                    </header>
+                    <div class="inkl-niveaus">
+                        <span class="inkl-niveau">Starter</span>
+                        <span class="inkl-niveau is-active">Praktisch</span>
+                        <span class="inkl-niveau">Diepgaand</span>
+                    </div>
+                    <ul class="inkl-cards">
+                        <li class="inkl-card" data-stagger="0">
+                            <div class="inkl-card-vak">Design</div>
+                            <div class="inkl-card-title">AI leest je schetsen</div>
+                            <div class="inkl-card-body">Maak een foto van je schets; de AI denkt mee over kleur en indeling.</div>
+                        </li>
+                        <li class="inkl-card" data-stagger="1">
+                            <div class="inkl-card-vak">Finance</div>
+                            <div class="inkl-card-title">AI leest je grafieken</div>
+                            <div class="inkl-card-body">Zet een grafiek erin en je krijgt de cijfers in gewone zinnen terug.</div>
+                        </li>
+                        <li class="inkl-card" data-stagger="2">
+                            <div class="inkl-card-vak">Zorg</div>
+                            <div class="inkl-card-title">AI vat een gesprek samen</div>
+                            <div class="inkl-card-body">Laat een consult uitschrijven en krijg een korte, leesbare samenvatting.</div>
+                        </li>
+                    </ul>
+                    <div class="inkl-meta">15 vakken · 3 niveaus · elke maandagochtend</div>
+                </div>
+            </a>
+
+            <ol class="dive-list">
+                <li><div>
+                    <h4>Agentic gather</h4>
+                    <p>Claude runs an <strong>agentic web-search loop</strong> (forced tool-use) to build one weekly news corpus, shared across every reader.</p>
+                </div></li>
+                <li><div>
+                    <h4>Personalization at scale</h4>
+                    <p>A per-reader pass rewrites the corpus across <span class="num">15</span> professions and <span class="num">3</span> levels. Base + corpus are <strong>prompt-cached</strong>, so cost scales with readers, not tokens.</p>
+                </div></li>
+                <li><div>
+                    <h4>Idempotent delivery</h4>
+                    <p>Claim-before-send, stable idempotency keys, and a recovery pass mean <strong>a crash never double-emails</strong>. Runs weekly on Supabase pg_cron.</p>
+                </div></li>
+                <li><div>
+                    <h4>Structured-output robustness</h4>
+                    <p>Editions come back as forced tool-call JSON with a <strong>flat-then-renest schema</strong> that fixed model JSON malformation on nested output.</p>
+                </div></li>
+            </ol>
+
+            <p class="stack-line">
+                <strong>Next.js 16</strong> · <strong>React 19</strong> · <strong>Python worker</strong> · <strong>Anthropic SDK</strong> · <strong>Supabase</strong> (auth + RLS) · <strong>Stripe Billing</strong> · <strong>Resend</strong><br>
+                Vercel · Supabase pg_cron · Sentry · Vitest · Playwright (e2e:smoke + e2e:money)
+            </p>
+        </section>
+
         <!-- SELECTED WORK -->
         <section class="section reveal" id="work" data-section="work">
             <p class="section-label">Selected work</p>
-            <div class="entry has-preview-target" id="inklaretaal" data-preview="images/inklaretaal-preview.png" data-preview-position="center">
-                <span class="entry-bg" aria-hidden="true"></span>
-                <div class="entry-side">Live · 2026</div>
-                <div class="entry-main">
-                    <h3><a class="link-ext" href="https://inklaretaal.nl" target="_blank" rel="noopener noreferrer">inklaretaal</a></h3>
-                    <p>Personalized plain-Dutch AI newsletter and learning product — live, with paying B2C subscribers (B2B teams in development). An agentic Claude + web-search pipeline builds one weekly news corpus, then tailors it across 15 professions and 3 levels, prompt-cached to scale. Next.js 16 + Python, Supabase, Stripe, Resend.</p>
-                    <div class="tags"><span class="tag">Agentic Pipeline</span><span class="tag">Personalization at Scale</span><span class="tag">Full-Stack Product</span></div>
-                </div>
-            </div>
             <div class="entry has-preview-target" data-preview="images/21-newsletter-agent.png" data-preview-position="top">
                 <span class="entry-bg" aria-hidden="true"></span>
                 <div class="entry-side">Live · 2025</div>
@@ -1149,9 +1300,13 @@ html[data-theme="dark"] .demo-frame.is-running .demo-pane::after { animation: de
         <section class="section section--no-rule reveal" id="stack" data-section="stack">
             <p class="section-label">Stack</p>
             <p class="stack-line">
-                Day-to-day: <strong>FastAPI</strong> · <strong>Python 3.11</strong> · <strong>Anthropic SDK</strong> · <strong>Instructor</strong> · <strong>Pydantic v2</strong> · <strong>BM25 RAG</strong><br>
-                Frontend: <strong>Next.js 14</strong> · <strong>TypeScript</strong> · <strong>Tailwind</strong> · <strong>Framer Motion</strong><br>
-                Infra: <strong>Supabase</strong> (auth + RLS) · <strong>Stripe</strong> · <strong>Railway</strong> · <strong>Vercel</strong> · <strong>Playwright</strong>
+                <strong>Languages</strong> — Python · TypeScript · SQL<br>
+                <strong>AI &amp; LLM</strong> — Anthropic SDK (Claude) · agentic tool-use + web search · structured output (Instructor, forced tool-calls) · prompt caching · RAG (BM25) · vision extraction<br>
+                <strong>ML &amp; Data</strong> — scikit-learn · PyTorch · Pandas · NumPy · predictive modeling · model evaluation<br>
+                <strong>Backend</strong> — FastAPI · Python workers · Pydantic v2 · REST APIs<br>
+                <strong>Frontend</strong> — Next.js 14 / 16 · React 19 · TypeScript · Tailwind · Framer Motion<br>
+                <strong>Data &amp; infra</strong> — Supabase (Postgres · auth · RLS) · Stripe Billing · Resend · Vercel · Railway · Supabase pg_cron<br>
+                <strong>Testing &amp; practice</strong> — Vitest · Playwright · pytest · GitHub Actions CI · Sentry · idempotent pipelines · reproducible LLM extraction
             </p>
         </section>
 
