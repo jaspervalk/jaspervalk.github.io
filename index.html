@@ -137,7 +137,11 @@ html[data-theme="dark"] body::after {
         height: 100vh;
         display: flex;
         flex-direction: column;
-        padding: 96px 0;
+        padding: 48px 0 20px;
+        /* Fallback so contact/socials stay reachable on short viewports
+           where the pinned sidebar content would otherwise clip below the fold */
+        overflow-y: auto;
+        scrollbar-width: thin;
     }
 }
 .intro h1 {
@@ -230,7 +234,7 @@ html[data-theme="dark"] body::after {
     width: max-content;
     max-width: 100%;
     gap: 10px;
-    margin-bottom: 38px;
+    margin-bottom: 30px;
 }
 .cta-group .primary-cta,
 .cta-group .secondary-cta { width: 100%; margin-bottom: 0; }
@@ -314,7 +318,7 @@ html[data-theme="dark"] body::after {
     }
 }
 
-.intro-socials { display: flex; gap: 8px; margin-top: 44px; }
+.intro-socials { display: flex; gap: 8px; margin-top: 28px; }
 .intro-socials a {
     width: 36px; height: 36px;
     display: inline-flex; align-items: center; justify-content: center;
