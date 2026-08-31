@@ -12,7 +12,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&amp;family=Spline+Sans+Mono:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="icons/favicon-jv.svg">
 <link rel="alternate icon" href="icons/favicon-jv.svg">
 <meta name="description" content="Jasper Valk is an AI Engineer, Data Scientist, founder of SubsidieMatch, and co-founder of inklaretaal. He builds production AI products from first idea to launch.">
@@ -36,9 +36,10 @@
     --button-bg: #07080d;
     --button-fg: #f3f4f0;
     --button-border: rgba(255, 255, 255, 0.12);
-    --font-display: 'IBM Plex Sans', system-ui, sans-serif;
-    --font-body: 'IBM Plex Sans', system-ui, sans-serif;
-    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+    /* Dark = technical instrument: one grotesque for display + body */
+    --font-display: 'Instrument Sans', system-ui, sans-serif;
+    --font-body: 'Instrument Sans', system-ui, sans-serif;
+    --font-mono: 'Spline Sans Mono', ui-monospace, monospace;
     --section-gap: 96px;
 }
 html[data-theme="light"] {
@@ -55,6 +56,8 @@ html[data-theme="light"] {
     --button-bg: #111219;
     --button-fg: #f7f5ee;
     --button-border: rgba(20, 19, 26, 0.12);
+    /* Light = editorial: an actual newspaper serif carries the headings */
+    --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
 }
 html { scroll-behavior: smooth; }
 body {
@@ -929,6 +932,104 @@ html[data-theme="dark"] .demo-frame.is-running .demo-pane::after { animation: de
     .demo-frame .demo-pane-icon--accent { opacity: 1; transform: none; }
     .demo-pane::after { display: none; }
     .demo-frame .demo-connector-pulse { display: none; }
+}
+
+/* ============================================================
+   THEME PERSONALITIES
+   Light reads as print: newspaper serif headings, a masthead rule,
+   italic bylines, "1." numbering and rules instead of boxes.
+   Dark reads as instrument: one grotesque, uppercase mono metadata,
+   zero-padded "01" numbering, dashed panels.
+   ============================================================ */
+
+/* ---------- LIGHT: editorial / newspaper ---------- */
+html[data-theme="light"] .intro h1::after {
+    content: '';
+    display: block;
+    max-width: 268px;
+    height: 3px;
+    margin-top: 12px;
+    border-top: 2px solid var(--fg);
+    border-bottom: 1px solid var(--fg);
+}
+html[data-theme="light"] .intro .role {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 19px;
+    letter-spacing: 0;
+}
+/* The lede becomes a standfirst — set in the serif, like a deck under a headline */
+html[data-theme="light"] .featured .lede {
+    font-family: var(--font-display);
+    font-size: 18.5px;
+    line-height: 1.5;
+    color: var(--fg-soft);
+}
+html[data-theme="light"] .featured .badges {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14.5px;
+    letter-spacing: 0;
+}
+/* Dates read as datelines rather than machine labels */
+html[data-theme="light"] .entry-side {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 13.5px;
+    text-transform: none;
+    letter-spacing: 0;
+}
+/* Print does not blink: the live marker is a set square, not a pulsing LED */
+html[data-theme="light"] .launch-pill {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14px;
+    text-transform: none;
+    letter-spacing: 0;
+    gap: 5px;
+}
+html[data-theme="light"] .launch-pill::before {
+    width: 7px;
+    height: 7px;
+    border-radius: 0;
+    box-shadow: none;
+    animation: none;
+}
+html[data-theme="light"] .featured .badges strong { font-weight: 500; }
+/* Plain "1." in the newspaper serif, right-aligned against the text column */
+html[data-theme="light"] .dive-list li::before {
+    content: counter(dive) ".";
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 400;
+    font-variant-numeric: normal;
+    letter-spacing: 0;
+    color: var(--fg-faint);
+    text-align: right;
+    padding-top: 1px;
+}
+/* Rules, not a dashed box — print sets information between rules */
+html[data-theme="light"] .stack-line {
+    border: 0;
+    border-top: 2px solid var(--fg);
+    border-bottom: 1px solid var(--divider);
+    border-radius: 0;
+    padding: 16px 2px 18px;
+}
+html[data-theme="light"] .footer {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* ---------- DARK: technical instrument ---------- */
+html[data-theme="dark"] .featured .badges {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 11px;
 }
 
 /* ============================================================
