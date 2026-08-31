@@ -412,6 +412,19 @@ html[data-theme="dark"] body::after {
 .featured h2 a:hover { color: var(--accent); }
 .featured h2 a svg { transition: transform 0.2s ease; }
 .featured h2 a:hover svg { transform: translate(2px, -2px); }
+
+/* Small brand marks beside the two product headings */
+.brand-mark {
+    height: 22px;
+    width: auto;
+    flex-shrink: 0;
+    margin-right: 3px;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+}
+.featured h2 a:hover .brand-mark { opacity: 1; }
+/* The inklaretaal mark is black line art — flip it so it reads on the dark ground */
+html[data-theme="dark"] .brand-mark--invert { filter: invert(1); opacity: 0.82; }
 .featured .lede {
     color: var(--fg-soft);
     margin-bottom: 18px;
@@ -1188,7 +1201,7 @@ html[data-theme="dark"] .featured .badges {
         <section class="section featured reveal" id="featured" data-section="featured">
             <p class="section-label">SubsidieMatch</p>
             <h2>
-                <a class="link-ext" href="https://www.subsidiematch.com" target="_blank" rel="noopener noreferrer">SubsidieMatch</a>
+                <a class="link-ext" href="https://www.subsidiematch.com" target="_blank" rel="noopener noreferrer"><img class="brand-mark" src="images/logo-subsidiematch.png" width="65" height="88" alt="" aria-hidden="true">SubsidieMatch</a>
             </h2>
             <p class="lede">SubsidieMatch reads Dutch contractor quotes, extracts equipment with Claude Vision, matches against <span class="num">7,729</span> RVO subsidy codes, and returns exact meldcodes and amounts in about <span class="num">30</span> seconds.</p>
             <p class="badges">
@@ -1260,7 +1273,7 @@ html[data-theme="dark"] .featured .badges {
         <section class="section featured reveal" id="inklaretaal" data-section="inklaretaal">
             <p class="section-label">inklaretaal</p>
             <h2>
-                <a class="link-ext" href="https://inklaretaal.nl" target="_blank" rel="noopener noreferrer">inklaretaal</a>
+                <a class="link-ext" href="https://inklaretaal.nl" target="_blank" rel="noopener noreferrer"><img class="brand-mark brand-mark--invert" src="images/logo-inklaretaal.png" width="71" height="88" alt="" aria-hidden="true">inklaretaal</a>
             </h2>
             <p class="lede">inklaretaal takes the same week's AI news and rewrites it in plain Dutch — tuned to your profession and reading level. One agentic gather pass builds the week's corpus; a per-reader pass then personalizes it across <span class="num">15</span> professions and <span class="num">3</span> depth levels.</p>
             <p class="badges">
