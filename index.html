@@ -1024,14 +1024,24 @@ html[data-theme="light"] .footer {
     text-transform: none;
     letter-spacing: 0;
 }
-/* The nav reads as a contents list, not a machine index */
+/* The nav reads as a contents list, not a machine index.
+   Set tighter than the mono nav it replaces: the serif runs at a larger
+   size, so the rows have to give the space back or the sidebar (a pinned
+   100vh column) pushes the contact row below the fold. */
 html[data-theme="light"] .nav-item a {
     font-family: var(--font-display);
-    font-size: 15px;
+    font-size: 14.5px;
     font-weight: 500;
     text-transform: none;
     letter-spacing: 0.01em;
+    padding: 5px 0;
 }
+html[data-theme="light"] .nav-list { gap: 4px; }
+/* The masthead rule already separates the name, so the heading needs less below it */
+html[data-theme="light"] .intro h1 { margin-bottom: 8px; }
+html[data-theme="light"] .intro h1::after { margin-top: 9px; }
+html[data-theme="light"] .intro .role { font-size: 18px; margin-bottom: 14px; }
+html[data-theme="light"] .intro-socials { margin-top: 20px; }
 /* Heavier section rules — print sets its sections off with real rules */
 html[data-theme="light"] .section {
     border-bottom-width: 2px;
