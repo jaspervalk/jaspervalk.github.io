@@ -1024,6 +1024,31 @@ html[data-theme="light"] .footer {
     text-transform: none;
     letter-spacing: 0;
 }
+/* The nav reads as a contents list, not a machine index */
+html[data-theme="light"] .nav-item a {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0.01em;
+}
+/* Heavier section rules — print sets its sections off with real rules */
+html[data-theme="light"] .section {
+    border-bottom-width: 2px;
+    border-bottom-color: color-mix(in srgb, var(--fg) 20%, transparent);
+}
+/* Crisp corners: print is cut, not rounded (dark keeps its screen radii) */
+html[data-theme="light"] .demo-frame,
+html[data-theme="light"] .demo-pane,
+html[data-theme="light"] .demo-line,
+html[data-theme="light"] .demo-line-scheme,
+html[data-theme="light"] .demo-pane-icon,
+html[data-theme="light"] .demo-pane-badge,
+html[data-theme="light"] .inkl-card,
+html[data-theme="light"] .inkl-feed li,
+html[data-theme="light"] .inkl-niveau {
+    border-radius: 2px;
+}
 
 /* ---------- DARK: technical instrument ---------- */
 html[data-theme="dark"] .featured .badges {
