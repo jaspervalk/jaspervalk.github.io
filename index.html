@@ -274,7 +274,7 @@ html[data-theme="dark"] body::after {
 @media (min-width: 1024px) {
     .nav { display: block; position: relative; padding-top: 12px; margin-bottom: auto; }
 }
-.nav-list { list-style: none; display: flex; flex-direction: column; gap: 6px; position: relative; }
+.nav-list { list-style: none; display: flex; flex-direction: column; gap: 4px; position: relative; }
 .nav-item a {
     display: inline-flex;
     align-items: center;
@@ -679,6 +679,81 @@ html[data-theme="dark"] .brand-mark--invert { filter: invert(1); opacity: 0.82; 
     text-transform: uppercase;
 }
 .footer-text { color: var(--fg-muted); }
+.footer { flex-wrap: wrap; }
+.footer-link {
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.footer-link:hover { color: var(--fg); }
+
+/* Other versions: the same portfolio, rebuilt as four separate sites.
+   Each version has one signature colour; the dots carry that colour in the nav and on each row. */
+.version-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: -6px;
+    transition: gap 0.32s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.nav-item a:hover .version-dots,
+.nav-item a:focus-visible .version-dots { gap: 6px; }
+.version-dots i,
+.version-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--dot);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--fg) 22%, transparent);
+}
+.version-dot { width: 9px; height: 9px; }
+.versions { counter-reset: version; }
+.versions h2 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+}
+.versions-lede { color: var(--fg-soft); font-size: 14.5px; max-width: 56ch; margin-bottom: 20px; }
+.versions .entry { counter-increment: version; }
+.versions .entry-side { display: flex; align-items: center; align-self: start; gap: 10px; }
+.versions .entry-side::before { content: counter(version, decimal-leading-zero); }
+.versions .entry .version-dot { order: 2; }
+/* The whole row opens the version, so the whole row shows focus */
+.versions .entry-main h3 a::before { content: ''; position: absolute; inset: 0; }
+.versions .entry-main h3 a:focus-visible { outline: none; }
+.versions .entry:has(a:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+.link-next::after {
+    content: "→";
+    display: inline-block;
+    margin-left: 0.4em;
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--fg-muted);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.entry:hover .link-next::after,
+.link-next:focus-visible::after { color: var(--accent); transform: translateX(3px); }
+/* Without hover there is no preview, so each row shows a small picture instead */
+.version-thumb { display: none; }
+@media (hover: none), (max-width: 640px) {
+    .version-thumb {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: top;
+        margin: 6px 0 14px;
+        border: 1px solid var(--divider);
+        border-radius: 6px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .version-dots, .link-next::after { transition: none; }
+}
 
 .theme-toggle {
     width: 32px;
@@ -1073,6 +1148,12 @@ html[data-theme="light"] .inkl-niveau {
     border-radius: 2px;
 }
 
+/* Print has a colour bar, not LEDs: the version swatches are squares */
+html[data-theme="light"] .version-dots i,
+html[data-theme="light"] .version-dot { border-radius: 0; }
+html[data-theme="light"] .versions .entry-side::before { content: counter(version) "."; }
+html[data-theme="light"] .version-thumb { border-radius: 2px; }
+
 /* ---------- DARK: technical instrument ---------- */
 html[data-theme="dark"] .featured .badges {
     text-transform: uppercase;
@@ -1179,6 +1260,7 @@ html[data-theme="dark"] .featured .badges {
                 <li class="nav-item"><a href="#experience"><span class="ind-static"></span>Experience</a></li>
                 <li class="nav-item"><a href="#research"><span class="ind-static"></span>Research</a></li>
                 <li class="nav-item"><a href="#stack"><span class="ind-static"></span>Stack</a></li>
+                <li class="nav-item"><a href="#versions"><span class="ind-static"></span>Other versions<span class="version-dots" aria-hidden="true"><i style="--dot: #d4ff3a"></i><i style="--dot: #2340ff"></i><i style="--dot: #c6b4ff"></i><i style="--dot: #ff5a00"></i></span></a></li>
             </ul>
         </nav>
         <div class="intro-socials" aria-label="Elsewhere">
@@ -1450,7 +1532,7 @@ html[data-theme="dark"] .featured .badges {
         </section>
 
         <!-- STACK -->
-        <section class="section section--no-rule reveal" id="stack" data-section="stack">
+        <section class="section reveal" id="stack" data-section="stack">
             <p class="section-label">Stack</p>
             <p class="stack-line">
                 <strong>Languages</strong> — Python · TypeScript · SQL<br>
@@ -1461,6 +1543,49 @@ html[data-theme="dark"] .featured .badges {
                 <strong>Data &amp; infra</strong> — Supabase (Postgres · auth · RLS) · Stripe Billing · Resend · Vercel · Railway · Supabase pg_cron<br>
                 <strong>Testing &amp; practice</strong> — Vitest · Playwright · pytest · GitHub Actions CI · Sentry · idempotent pipelines · reproducible LLM extraction
             </p>
+        </section>
+
+        <!-- OTHER VERSIONS -->
+        <section class="section section--no-rule reveal versions" id="versions" data-section="versions">
+            <p class="section-label">Other versions</p>
+            <h2>This page is calm on purpose.</h2>
+            <p class="versions-lede">The same work, rebuilt four more times. Each version is its own site.</p>
+            <div class="entry has-preview-target" data-preview="images/versions/monument.jpg" data-preview-position="center 92%">
+                <span class="entry-bg" aria-hidden="true"></span>
+                <div class="entry-side"><i class="version-dot" style="--dot: #d4ff3a" aria-hidden="true"></i></div>
+                <div class="entry-main">
+                    <img class="version-thumb" src="images/versions/monument.jpg" alt="" width="1440" height="900" loading="lazy">
+                    <h3><a class="link-next" href="versions/monument/">Monument</a></h3>
+                    <p>Big type in the dark. The work plays as you scroll.</p>
+                </div>
+            </div>
+            <div class="entry has-preview-target" data-preview="images/versions/playground.jpg" data-preview-position="center 25%">
+                <span class="entry-bg" aria-hidden="true"></span>
+                <div class="entry-side"><i class="version-dot" style="--dot: #2340ff" aria-hidden="true"></i></div>
+                <div class="entry-main">
+                    <img class="version-thumb" src="images/versions/playground.jpg" alt="" width="1440" height="900" loading="lazy">
+                    <h3><a class="link-next" href="versions/playground/">Playground</a></h3>
+                    <p>Bright tiles on cobalt, full of things to poke.</p>
+                </div>
+            </div>
+            <div class="entry has-preview-target" data-preview="images/versions/poster.jpg" data-preview-position="center 22%">
+                <span class="entry-bg" aria-hidden="true"></span>
+                <div class="entry-side"><i class="version-dot" style="--dot: #c6b4ff" aria-hidden="true"></i></div>
+                <div class="entry-main">
+                    <img class="version-thumb" src="images/versions/poster.jpg" alt="" width="1440" height="900" loading="lazy">
+                    <h3><a class="link-next" href="versions/poster/">Poster</a></h3>
+                    <p>One giant poster that changes colour as you scroll.</p>
+                </div>
+            </div>
+            <div class="entry has-preview-target" data-preview="images/versions/instrument.jpg" data-preview-position="center 43%">
+                <span class="entry-bg" aria-hidden="true"></span>
+                <div class="entry-side"><i class="version-dot" style="--dot: #ff5a00" aria-hidden="true"></i></div>
+                <div class="entry-main">
+                    <img class="version-thumb" src="images/versions/instrument.jpg" alt="" width="1440" height="900" loading="lazy">
+                    <h3><a class="link-next" href="versions/instrument/">Instrument</a></h3>
+                    <p>The page as a piece of hardware.</p>
+                </div>
+            </div>
         </section>
 
         <!-- NEWSLETTER -->
@@ -1475,6 +1600,7 @@ html[data-theme="dark"] .featured .badges {
 
         <footer class="footer">
             <span class="footer-text">Jasper Valk · 2026</span>
+            <a class="footer-link" href="#versions">Four other versions of this page &rarr;</a>
         </footer>
     </main>
 </div>
