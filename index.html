@@ -1161,6 +1161,23 @@ html[data-theme="dark"] .featured .badges {
     font-size: 11px;
 }
 
+/* ---------- Short screens: the pinned sidebar fits one screen, no scrollbar of its own ----------
+   Its content is ~850px tall. Below that, tighten the vertical rhythm first (after the theme rules,
+   so it wins over them); where even that doesn't fit, the sidebar scrolls with the page. */
+@media (min-width: 1024px) and (max-height: 880px) {
+    .intro { padding: 32px 0 16px; }
+    .launch-pill { margin-bottom: 14px; }
+    .cta-group { margin-bottom: 18px; }
+    .nav { padding-top: 4px; }
+    .nav-item a { padding: 6px 0; }
+    html[data-theme="light"] .nav-item a { padding: 4px 0; }
+    .intro-socials,
+    html[data-theme="light"] .intro-socials { margin-top: 14px; }
+}
+@media (min-width: 1024px) and (max-height: 795px) {
+    .intro { position: relative; align-self: start; height: auto; overflow: visible; }
+}
+
 /* ============================================================
    inklaretaal demo — reuses .demo-frame chrome, adds its own
    plain-Dutch personalization content + staggered reveal
