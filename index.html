@@ -582,7 +582,8 @@ html[data-theme="dark"] .brand-mark--invert { filter: invert(1); opacity: 0.82; 
     transform: translateY(14px);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
-.reveal.is-visible { opacity: 1; transform: translateY(0); }
+/* transform: none (not translateY(0)), so a revealed section doesn't trap its sticky label under the top strip */
+.reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; transition: none; }
 }
@@ -1152,7 +1153,10 @@ html[data-theme="dark"] body { background: #181213; }
 html[data-theme="dark"] .wind {
     display: block;
     position: fixed;
-    inset: 0;
+    inset: 0 0 auto 0;
+    /* The largest viewport, so the light doesn't rescale when a phone's address bar slides in or out */
+    height: 100vh;
+    height: 100lvh;
     z-index: -1;
     overflow: hidden;
     pointer-events: none;
@@ -1297,6 +1301,44 @@ html[data-theme="dark"] .stack-line { color: #c9b5aa; }
     .demo-total-label, .demo-meta, .inkl-source, .inkl-niveau,
     .inkl-card-vak, .inkl-meta { font-size: 11px; }
     .inkl-feed li, .inkl-card-body { font-size: 12px; }
+}
+/* Phones, dark: the sticky section label floats above the light as a small card, level with the theme
+   button, instead of a solid band of page colour fading into the light */
+@media (max-width: 1023px) {
+    html[data-theme="dark"] .section-label {
+        width: fit-content;
+        top: 24px;
+        min-height: 38px;
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        background: rgba(27, 20, 21, 0.92);
+        border: 1px solid rgba(247, 235, 226, 0.1);
+        box-shadow: 0 12px 26px -14px rgb(0 0 0 / 0.7), 0 1px 4px rgb(0 0 0 / 0.25);
+        color: var(--fg-soft);
+    }
+    /* Content that scrolls under the labels softens away into the light itself (blurred, not painted over),
+       so the top edge always has the colour of the light behind it */
+    html[data-theme="dark"] body::before {
+        content: "";
+        position: fixed;
+        inset: 0 0 auto 0;
+        height: 96px;
+        z-index: 4;
+        pointer-events: none;
+        background: rgb(24 18 19 / 0.16);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent);
+        mask-image: linear-gradient(to bottom, #000 58%, transparent);
+    }
+    html[data-theme="dark"] .theme-toggle--fixed {
+        background: rgba(27, 20, 21, 0.92);
+        border-color: rgba(247, 235, 226, 0.1);
+        box-shadow: 0 12px 26px -14px rgb(0 0 0 / 0.7), 0 1px 4px rgb(0 0 0 / 0.25);
+    }
 }
 </style>
 </head>
