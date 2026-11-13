@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jasper Valk — AI Engineer · Data Scientist · Founder</title>
 <script>
 (() => {
-  const stored = localStorage.getItem('theme');
-  document.documentElement.setAttribute('data-theme', stored === 'dark' ? 'dark' : 'light');
+  // Dark (the evening light) is the default; a visitor's own choice from the toggle is remembered.
+  let stored = null;
+  try { stored = localStorage.getItem('theme'); } catch (e) {}
+  document.documentElement.setAttribute('data-theme', stored === 'light' ? 'light' : 'dark');
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
