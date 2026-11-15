@@ -1146,8 +1146,8 @@ html[data-theme="dark"] .featured .badges {
 /* ============================================================
    EVENING LIGHT — the Wind material of Valk AI (jasper-ui), dark theme only.
    Low sun through a window onto the wall behind the whole page, leaves moving in front of it,
-   fine grain. The ladder is Wind an hour later (warm black → bordeaux → terracotta → deep amber,
-   lightest step #93502e), so light text passes AA anywhere on it. Some cards float above it as
+   fine grain. The ladder is Wind an hour later, glowing: warm black → oxblood → rust → burnt orange
+   (lightest step #965002, same lightness as before but more orange), so light text passes AA anywhere on it. Some cards float above it as
    solid surfaces. Layers are pre-softened images; the script only moves them (transform, opacity).
    ============================================================ */
 .wind { display: none; }
@@ -1193,9 +1193,10 @@ html[data-theme="dark"] .wind {
     .wind .schaduw-2 { background-image: url("assets/wind/schaduw-2-smal.webp"); }
     .wind .schaduw-3 { background-image: url("assets/wind/schaduw-3-smal.webp"); }
 }
-.wind .scrim { position: absolute; inset: 0; background: rgb(24 18 19 / 0.34); }
+/* A warm dusk, not a grey one: it keeps the orange alive while it takes the light down */
+.wind .scrim { position: absolute; inset: 0; background: rgb(26 13 9 / 0.30); }
 /* Standing (phone): the light falls across the whole reading column, so a little more dusk */
-@container (max-aspect-ratio: 4 / 5) { .wind .scrim { background: rgb(24 18 19 / 0.46); } }
+@container (max-aspect-ratio: 4 / 5) { .wind .scrim { background: rgb(26 13 9 / 0.42); } }
 .wind .korrel {
     position: absolute;
     inset: -96px;
